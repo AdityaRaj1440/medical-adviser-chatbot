@@ -112,12 +112,14 @@ def chatDetails():
         SpeakText(response)
     chatHistory= create_prompt("", prompt_list, '\n')
     print('chatDeatails\n',chatDetails)
-    return render_template('/chatResult.html',condition=condition, severity=severity, chatHistory=chatHistory)
+    return render_template('/chatResult.html',condition=request.form.get('condition'), severity=request.form.get('severity'), chatHistory=chatHistory)
 
 @app.route('/chat-text', methods= ['POST'])
 def chatText():
     condition= request.form.get('condition')
     severity= request.form.get('severity')
+    global prompt_list
+    prompt_list= prompt_list[0:2]
     user_input= 'health condition- '+condition+", severity- "+severity
     response: str= get_bot_response(user_input, prompt_list)
     print(f'Bot: {response}')
@@ -129,6 +131,8 @@ def chatText():
 def chatAudio():
     condition= speechText("Please tell about your health condition")
     severity= speechText("Please tell about your health severity")
+    global prompt_list
+    prompt_list= prompt_list[0:2]
     user_input= 'health condition- '+condition+", severity- "+severity
     response: str= get_bot_response(user_input, prompt_list)
     chatHistory= create_prompt("",prompt_list,'\n')
