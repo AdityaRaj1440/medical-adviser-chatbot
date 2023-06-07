@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 import speech_recognition as sr
-import pyttsx3
+
 
 load_dotenv(Path(".env"))
 
@@ -17,7 +17,7 @@ condition: str= ""
 severity: str= ""
 
 def SpeakText(command):
-	
+	import pyttsx3
 	# Initialize the engine
 	engine = pyttsx3.init()
 	engine.say(command)
@@ -102,7 +102,6 @@ def chatDetails():
     # chatHistory=""
     # print(request.form)
     if request.form.get('text')=='Send':
-        SpeakText('Yes')
         user_input= request.form.get('message')
         response: str= get_bot_response(user_input, prompt_list)
     elif request.form.get('audio')=='Record':
