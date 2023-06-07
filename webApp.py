@@ -72,10 +72,10 @@ def get_api_response(prompt: str):
 
     return text
 
-def update_list(message: str, pl: list[str]):
+def update_list(message: str, pl):
     pl.append(message)
 
-def create_prompt(message: str, pl: list[str], separator=None):
+def create_prompt(message: str, pl, separator=None):
     p_message: str= f'\nHuman: {message}'
     update_list(p_message, pl)
     if separator:
@@ -85,7 +85,7 @@ def create_prompt(message: str, pl: list[str], separator=None):
     prompt: str= ''.join(pl)
     return prompt
 
-def get_bot_response(message: str, pl: list[str]):
+def get_bot_response(message: str, pl):
     prompt: str= create_prompt(message, pl)
     bot_response: str= get_api_response(prompt)
 
