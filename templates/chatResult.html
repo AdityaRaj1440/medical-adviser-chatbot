@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Helpdesk Chatbot</title>
+</head>
+<body>
+    <h1>Health Helpdesk Chatbot</h1>
+    <h2>Condition: {{ condition }}</h2>
+    <h2>Severity: {{ severity }}</h2>
+    <hr>
+    <h3>User Message:</h3>
+    <p>{{ user_message }}</p>
+    <h3>Chatbot Response:</h3>
+    <p>{{ chatbot_response }}</p>
+    <hr>
+    <form action="/chat/details" method="POST">
+        <input type="hidden" name="condition" value="{{ condition }}">
+        <input type="hidden" name="severity" value="{{ severity }}">
+        <label for="message">Your Message:</label>
+        <input type="text" name="message" id="message">
+        <br><br>
+        <input type="submit" value="Send" name="text">
+        <input type="submit" value="Record" name="audio">
+    </form>
+    <div>
+        <pre>{{chatHistory}}</pre>
+    </div>
+</body>
+</html>

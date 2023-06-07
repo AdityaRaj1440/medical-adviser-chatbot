@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Helpdesk Chatbot</title>
+</head>
+<body>
+    <h1>Health Helpdesk Chatbot</h1>
+    <form action="/chat-text" method="POST">
+        <label for="condition">Health Condition:</label>
+        <select name="condition" id="condition">
+            <option value="Allergies">Allergies</option>
+            <option value="Asthma">Asthma</option>
+            <option value="Diabetes">Diabetes</option>
+            <option value="High Blood Pressure">High Blood Pressure</option>
+            <option value="Migraine">Migraine</option>
+            <!-- Add more options as needed -->
+        </select>
+        <br><br>
+        <label for="severity">Severity of Condition:</label>
+        <select name="severity" id="severity">
+            <option value="Mild">Mild</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Severe">Severe</option>
+            <!-- Add more options as needed -->
+        </select>
+        <br><br>
+        <input type="submit" value="Send" name="text">
+        <br>
+        <br>
+    </form>
+</body>
+</html>
