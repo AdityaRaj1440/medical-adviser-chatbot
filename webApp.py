@@ -12,8 +12,7 @@ openai.api_key= os.getenv('API_KEY')
 
 app = Flask(__name__)
 
-prompt_list: list[str]= ['You will pretend to be a medical advisor that give suggestions to users based on their health conditions and severity of the health conditions in under 50 words.',
-                             '\nAI: Please tell about your health condition and severity.']
+prompt_list= ['You will pretend to be a medical advisor that give suggestions to users based on their health conditions and severity of the health conditions in under 50 words.','\nAI: Please tell about your health condition and severity.']
 condition: str= ""
 severity: str= ""
 
