@@ -79,7 +79,8 @@ def create_prompt(message: str, pl, separator=None):
     p_message: str= f'\nHuman: {message}'
     update_list(p_message, pl)
     if separator:
-        pl= pl[1:-1]
+        pl = list(filter(("\nHuman: ").__ne__, pl))
+        pl= pl[1:]
         prompt: str= '\n'.join(pl)
         return prompt
     prompt: str= ''.join(pl)
@@ -99,8 +100,6 @@ def get_bot_response(message: str, pl):
 
 @app.route('/chat/details', methods= ['POST'])
 def chatDetails():
-    # chatHistory=""
-    # print(request.form)
     if request.form.get('text')=='Send':
         user_input= request.form.get('message')
         response: str= get_bot_response(user_input, prompt_list)
@@ -110,7 +109,8 @@ def chatDetails():
         response: str= get_bot_response(user_input,prompt_list)
         SpeakText(response)
     chatHistory= create_prompt("", prompt_list, '\n')
-    print('chatDeatails\n',chatDetails)
+    print(prompt_list)
+    # print('chatDeatails\n',chatDetails)
     return render_template('/chatResult.html',condition=request.form.get('condition'), severity=request.form.get('severity'), chatHistory=chatHistory)
 
 @app.route('/chat-text', methods= ['POST'])
@@ -121,9 +121,9 @@ def chatText():
     prompt_list= prompt_list[0:2]
     user_input= 'health condition- '+condition+", severity- "+severity
     response: str= get_bot_response(user_input, prompt_list)
-    print(f'Bot: {response}')
+    # print(f'Bot: {response}')
     chatHistory= create_prompt("", prompt_list, '\n')
-    print("chatList\n", chatHistory)
+    # print("chatList\n", chatHistory)
     return render_template('chatResult.html',condition= condition, severity= severity, chatHistory=chatHistory)
 
 @app.route('/chat-audio', methods= ['POST'])

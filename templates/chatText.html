@@ -2,9 +2,41 @@
 <html>
 <head>
     <title>Health Helpdesk Chatbot</title>
+    <style>
+        body{
+            background-color:coral;
+            text-align: center;
+            max-height: 100vh;
+            font-size: 42px;
+            font-weight: bolder;
+            color:golden;
+        }
+        form{
+            top: 50vh;
+            font-size: 20px;
+            text-align: center;
+        }
+        select{
+            font-size: 15px;
+            min-width: 30vw;
+            min-height: 5vh;
+            margin-top: 10vh;
+        }
+        input{
+            margin-top: 10vh;
+            align-self: center;
+            min-width: 30vw;
+            min-height: 10vh;
+            font-size: 30px;
+            font-weight: bold;
+            margin-right: 5vw;
+            margin-left: 5vw;
+        }
+    </style>
 </head>
 <body>
     <h1>Health Helpdesk Chatbot</h1>
+    
     <form action="/chat-text" method="POST">
         <label for="condition">Health Condition:</label>
         <select name="condition" id="condition">
@@ -15,7 +47,7 @@
             <option value="Migraine">Migraine</option>
             <!-- Add more options as needed -->
         </select>
-        <br><br>
+        <br><br><br><br>
         <label for="severity">Severity of Condition:</label>
         <select name="severity" id="severity">
             <option value="Mild">Mild</option>
@@ -25,6 +57,7 @@
         </select>
         <br><br>
         <input type="submit" value="Send" name="text">
+
         <br>
         <br>
     </form>

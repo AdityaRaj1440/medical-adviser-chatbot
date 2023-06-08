@@ -2,28 +2,102 @@
 <html>
 <head>
     <title>Health Helpdesk Chatbot</title>
+    <style>
+        body{
+            background-color:coral;
+            text-align: center;
+            max-height: 100vh;
+            font-size: 25px;
+            font-weight: bolder;
+            color:golden;
+        }
+        form{
+            font-size: 15px;
+            text-align: center;
+        }
+        select{
+            font-size: 15px;
+            min-width: 30vw;
+            min-height: 5vh;
+            margin-top: 10vh;
+        }
+        input{
+            margin-top: 5vh;
+            align-self: center;
+            min-width: 30vw;
+            min-height: 4vh;
+            /* font-size: 30px; */
+            font-weight: bold;
+            margin-right: 5vw;
+            margin-left: 5vw;
+        }
+        td{
+            text-align: left;
+            padding-left: 10px;
+        }
+        tr{
+            height: 1;
+        }
+        div.chatHistory{
+            margin: auto;
+            max-height: 40vh;
+            min-height:40vh;
+            max-width: 90vw;
+            font-size: 18px;
+            background-color: black;
+            color: white;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            text-align: left;
+        }
+        #message{
+            min-width: 70vw;
+            max-height: 5vh;
+            font-size: 15px;
+        }
+        pre{
+            white-space: pre-wrap;       /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+    </style>
 </head>
 <body>
     <h1>Health Helpdesk Chatbot</h1>
-    <h2>Condition: {{ condition }}</h2>
-    <h2>Severity: {{ severity }}</h2>
-    <hr>
-    <h3>User Message:</h3>
-    <p>{{ user_message }}</p>
-    <h3>Chatbot Response:</h3>
-    <p>{{ chatbot_response }}</p>
+    <table align="center">
+        <tr>
+            <td>
+                Condition:
+            </td>
+            <td class="rightCol">
+                {{condition}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Severity:
+            </td>
+            <td class="rightCol">
+                {{severity}}
+            </td>
+        </tr>
+    </table>
     <hr>
     <form action="/chat/details" method="POST">
         <input type="hidden" name="condition" value="{{ condition }}">
         <input type="hidden" name="severity" value="{{ severity }}">
-        <label for="message">Your Message:</label>
-        <input type="text" name="message" id="message">
         <br><br>
+    <div>
+        <div class="chatHistory">
+            <pre>{{chatHistory}}</pre>
+        </div>
+        <label for="message" id="identifier">Your Message:</label>
+        <input type="text" name="message" id="message">
         <input type="submit" value="Send" name="text">
         <input type="submit" value="Record" name="audio">
-    </form>
-    <div>
-        <pre>{{chatHistory}}</pre>
     </div>
+    </form>
 </body>
 </html>
